@@ -19,6 +19,10 @@ namespace TitleScreen
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SpriteFont font1;
+        SpriteFont font2;
+        Texture2D pacMan;
+        Rectangle pacManRectangle;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -34,7 +38,7 @@ namespace TitleScreen
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            pacManRectangle = new Rectangle(280,120,250,188);
             base.Initialize();
         }
 
@@ -46,7 +50,9 @@ namespace TitleScreen
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            font1 = Content.Load<SpriteFont>("SpriteFont1");
+            font2 = Content.Load<SpriteFont>("SpriteFont2");
+            pacMan = Content.Load<Texture2D>("Pac Man");
             // TODO: use this.Content to load your game content here
         }
 
@@ -84,7 +90,11 @@ namespace TitleScreen
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font1, "Pac Man", new Vector2(320, 50), Color.Black);
+            spriteBatch.Draw(pacMan,pacManRectangle,Color.White);
+            spriteBatch.DrawString(font2, "Toru Iwatani",new Vector2(320,370),Color.Blue);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
